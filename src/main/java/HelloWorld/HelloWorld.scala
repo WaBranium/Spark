@@ -3,6 +3,10 @@ package HelloWorld
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
+/**
+ * @author BiHan
+ * 核心思路：大爆炸之后，先转换成一个个Tuple，逐个根据key来叠加Tuple中的value
+ */
 object HelloWorld {
 
   def main(args: Array[String]): Unit = {
@@ -13,7 +17,7 @@ object HelloWorld {
     val sc: SparkContext = new SparkContext(sparkConf)
 
     // 读取文件数据
-    val fileRDD: RDD[String] = sc.textFile("src/main/resources/1.txt")
+    val fileRDD: RDD[String] = sc.textFile("{datas/*}")
 
     // 将文件中的数据进行分词
     val wordRDD: RDD[String] = fileRDD.flatMap(_.split(" "))
