@@ -1,6 +1,6 @@
 package FrameWork
 
-import java.io.OutputStream
+import java.io.{ObjectOutputStream, OutputStream}
 import java.net.Socket
 
 
@@ -16,13 +16,14 @@ object Driver {
     val os: OutputStream = client.getOutputStream
 
     // TODO 进行数据流逻辑处理
-    os.write(6)
-
+    val objs: ObjectOutputStream = new ObjectOutputStream(os)
+    objs.writeObject(new TaskRDD)
     // TODO 发送数据流
-    os.flush()
+    objs.flush()
 
     // TODO 关闭
-    os.close()
+    objs.close()
     client.close()
+    println("客户端发送数据完毕")
   }
 }
