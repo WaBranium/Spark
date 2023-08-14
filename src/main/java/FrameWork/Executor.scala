@@ -1,6 +1,6 @@
 package FrameWork
 
-import java.io.InputStream
+import java.io.{InputStream, ObjectInputStream}
 import java.net.{ServerSocket, Socket}
 
 /**
@@ -16,10 +16,12 @@ object Executor {
     println("获取客户端，提取数据流")
     // TODO 获取客户端数据流
     val is: InputStream = client.getInputStream
+    val obji: ObjectInputStream = new ObjectInputStream(is)
     println("获取到数据流，开始处理任务")
     // TODO 进行任务处理
-    val i: Int = is.read()
-    println("获取到执行数据为：" + i)
+    val task: TaskRDD = obji.readObject().asInstanceOf[TaskRDD]
+    val values: List[Int] = task.compute()
+    println("获取到执行数据为：" + values)
     // TODO 关闭
     is.close()
     client.close()
