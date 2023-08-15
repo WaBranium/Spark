@@ -1,4 +1,6 @@
-package FrameWork
+package FrameWork.ComputeStandalone
+
+import FrameWork.Task
 
 import java.io.{InputStream, ObjectInputStream}
 import java.net.{ServerSocket, Socket}
@@ -19,7 +21,7 @@ object Executor {
     val obji: ObjectInputStream = new ObjectInputStream(is)
     println("获取到数据流，开始处理任务")
     // TODO 进行任务处理
-    val task: TaskRDD = obji.readObject().asInstanceOf[TaskRDD]
+    val task: Task = obji.readObject().asInstanceOf[Task]
     val values: List[Int] = task.compute()
     println("获取到执行数据为：" + values)
     // TODO 关闭

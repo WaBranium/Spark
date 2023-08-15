@@ -5,7 +5,7 @@ package FrameWork
  * 模拟分布式计算：RDD算子，封装数据获取方式及其计算逻辑
  * 因为涉及到对象传输所以切记要进行序列化
  */
-class TaskRDD extends Serializable {
+class Task extends Serializable {
 
   // TODO 设计数据获取方式
   val datas: List[Int] = List(1, 2, 3, 4)
