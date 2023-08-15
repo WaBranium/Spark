@@ -1,4 +1,6 @@
-package FrameWork
+package FrameWork.ComputeStandalone
+
+import FrameWork.Task
 
 import java.io.{ObjectOutputStream, OutputStream}
 import java.net.Socket
@@ -17,7 +19,7 @@ object Driver {
 
     // TODO 进行数据流逻辑处理
     val objs: ObjectOutputStream = new ObjectOutputStream(os)
-    objs.writeObject(new TaskRDD)
+    objs.writeObject(new Task)
     // TODO 发送数据流
     objs.flush()
 
