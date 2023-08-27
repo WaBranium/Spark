@@ -37,7 +37,13 @@ object RddFilePar {
     val fileRDD: RDD[String] = sc.textFile("{datas/*}",2)
 
     // TODO 打印数据 关闭
+   /*
+   实际上 在保存数据的时候 会按照偏移量来读取数据 并且前后都闭
+   但是由于Hadoop读取文件是按行读取的方式 比如说 0号分区里[0,7] 1号[7.14] 但是第一行有8个偏移量
+   那1号分区下次就只能从偏移量9开始读了
+    */
     fileRDD.collect().foreach(println)
+
     sc.stop()
   }
 
